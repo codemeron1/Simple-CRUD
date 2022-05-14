@@ -1,4 +1,4 @@
-# flutter_classes
+# Flutter and SQLite
 
 Simple CRUD using SQLite
 
