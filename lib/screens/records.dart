@@ -7,6 +7,7 @@ class Record extends StatefulWidget {
   final Function deleteRecord;
   final Function editRecord;
 
+
   const Record({required this.deleteRecord, required this.editRecord, Key ? key}) : super(key: key);
 
   @override

@@ -28,16 +28,20 @@ class _MainState extends State<Main> {
   late String lastname;
 
   void deleteRecord(String id)  {
-    debugPrint("the id $id");
     m.delete(id);
     setState(() {});
   }
-
+  /// This only get the record to be put in the input fields. Not actually updating the record in the database.
   void editRecord(String id, String firstname, String middlename, String lastname) {
     this.id = id;
     this.firstname = firstname;
     this.middlename = middlename;
     this.lastname = lastname;
+  }
+  /// Updates specific record in the database.
+  void updateRecord(MeronDatabase record, String oldId) {
+    m.update(record, oldId);
+    setState(() {});
   }
 
   @override
@@ -46,9 +50,9 @@ class _MainState extends State<Main> {
       title: "Simple CRUD",
       initialRoute: "/",
       routes: {
-        "/" : (context) => Record(deleteRecord: deleteRecord, editRecord: editRecord,),
+        "/" : (context) => Record(deleteRecord: deleteRecord, editRecord: editRecord),
         "/new_record" : (context) => const NewRecord(),
-        "/update_record": (context) => UpdateRecord(id: id, firstname: firstname, middlename: middlename, lastname: lastname),
+        "/update_record": (context) => UpdateRecord(id: id, firstname: firstname, middlename: middlename, lastname: lastname, updateRecord: updateRecord,),
       },
     );
   }

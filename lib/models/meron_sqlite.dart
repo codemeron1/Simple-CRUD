@@ -44,12 +44,12 @@ class MeronDatabase {
   }
 
   //update record
-  Future<void> update(MeronDatabase record) async {
+  Future<void> update(MeronDatabase record, String oldId) async {
     //connect to db
     final db = await database;
     //update the given record.
     await db.update('users', record.toMap(),
-        where: "id = ?", whereArgs: [record.id]);
+        where: "id = ?", whereArgs: [oldId]);
   }
 
   //delete record

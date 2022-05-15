@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_classes/models/meron_sqlite.dart';
 
 class UpdateRecord extends StatefulWidget {
-  String id;
-  String firstname;
-  String middlename;
-  String lastname;
+
+  final String id;
+  final String firstname;
+  final String middlename;
+  final String lastname;
+  final Function updateRecord;
 
 
-  UpdateRecord({required this.id, required this.firstname, required this.middlename, required this.lastname, Key? key}) : super(key: key);
+  const UpdateRecord({required this.id, required this.firstname, required this.middlename, required this.lastname, required this.updateRecord, Key? key}) : super(key: key);
 
   @override
   _UpdateRecordState createState() => _UpdateRecordState();
@@ -90,13 +92,14 @@ class _UpdateRecordState extends State<UpdateRecord> {
                       firstname: txtFirstname.text,
                       middlename: txtMiddlename.text,
                       lastname: txtLastname.text);
-                  m.insertRecord(m);
+                  widget.updateRecord(m, widget.id);
+                  Navigator.pop(context);
                 },
                 style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.all(20.0),
                     minimumSize: const Size(150.0, 20.0),
                     textStyle: const TextStyle(fontSize: 20.0)),
-                child: const Text("Save"),
+                child: const Text("Update"),
               )
             ],
           ),
